@@ -27,11 +27,6 @@ public class PlayerController : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        if (isGrounded == true)
-        {
-            Debug.Log("isGrounded");
-        }
-
         //isGrounded does not activate
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)

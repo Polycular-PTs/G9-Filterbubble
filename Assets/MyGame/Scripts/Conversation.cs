@@ -13,4 +13,8 @@ public class Conversation : MonoBehaviour
     public Conversation decisionB;
     public string decisionAtext;
     public string decisionBtext;
+
+    [Header("Soll etwas aktivier/deaktiviert werden")]
+    public GameObject toActivate;
+    public GameObject toDeactivate;
 }

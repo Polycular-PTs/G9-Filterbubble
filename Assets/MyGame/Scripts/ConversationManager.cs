@@ -42,11 +42,37 @@ public class ConversationManager : MonoBehaviour
             Option1.GetComponentInChildren<TextMeshProUGUI>().text = con.decisionAtext;
             Option2.SetActive(true);
             Option2.GetComponentInChildren<TextMeshProUGUI>().text = con.decisionBtext;
+
         }
+    }
+
+    public void Toggle()
+    {
+        if (con.toActivate != null)
+        {
+            con.toActivate.SetActive(true);
+        }
+        if (con.toDeactivate != null)
+        {
+            con.toDeactivate.SetActive(false);
+        }
+    }
+
+    public void InitializeState(Conversation newCon)
+    {
+        con = newCon;
+        indexAnswers = 0;
+        Option1.SetActive(false);
+        Option2.SetActive(false);
+        meinDialog.text = con.dialog[indexAnswers];
+        nameDisplay.text = con.names[indexAnswers];
+        characterDisplay.texture = con.characterImage[indexAnswers];
     }
 
     public void NextState(int decisionIndex)
     {
+        Toggle();
+
         if (decisionIndex == 1)
         {
             con = con.decisionA;
@@ -56,9 +82,12 @@ public class ConversationManager : MonoBehaviour
             con = con.decisionB;
         }
         indexAnswers = 0;
+        Option1.SetActive(false);
+        Option2.SetActive(false);
         meinDialog.text = con.dialog[indexAnswers];
         nameDisplay.text = con.names[indexAnswers];
         characterDisplay.texture = con.characterImage[indexAnswers];
+        
     }
 
     private void Update()

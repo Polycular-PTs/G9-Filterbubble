@@ -9,6 +9,9 @@ public class Door : MonoBehaviour
     public GameObject nextLevel;         // Parent GameObject of next level
     public Transform playerSpawnPoint;   // Where the player should be moved
 
+    public bool lastLevel;
+    public Conversation loadCon;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -23,12 +26,18 @@ public class Door : MonoBehaviour
             if (nextLevel != null)
             {
                 nextLevel.SetActive(true);
+
+                if (lastLevel)
+                {
+                    nextLevel.GetComponentInChildren<ConversationManager>().InitializeState(loadCon);
+                }
             }
 
             // Deactivate current level
             if (currentLevel != null)
             {
                 currentLevel.SetActive(false);
+
             }
         }
     }
